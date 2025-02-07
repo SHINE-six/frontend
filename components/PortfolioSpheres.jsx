@@ -2,12 +2,12 @@ import { useEffect, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Text, useGLTF } from "@react-three/drei"
 
-function ProjectSphere({ index, total, setFocusedItem, model }) {
+function ProjectSphere({ index, total, setFocusedItem, project }) {
   const groupRef = useRef()
-  const { scene } = useGLTF(model.path)
+  const { scene } = useGLTF(project.model.model_path)
   const color = "#000000"
   const angle = (index / total) * Math.PI * 2
-  const radius = 12
+  const radius = 14
   const tiltAngle = Math.PI * -0.15
 
   useEffect(() => {
@@ -17,18 +17,18 @@ function ProjectSphere({ index, total, setFocusedItem, model }) {
         obj.material.roughness = 0.2
         obj.material.metalness = 0.8
 
-        if (model.bloom) {
+        if (project.model.bloom) {
           obj.layers.enable(1)
           obj.material.emissive.set(color)
           obj.material.emissiveIntensity = 1
         }
       }
     })
-  }, [scene, color, model.bloom])
+  }, [scene, color, project.model.bloom])
   
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
-    const orbitSpeed = 0.1
+    const orbitSpeed = 0.15
     const currentAngle = angle + t * orbitSpeed
     
     groupRef.current.position.x = Math.cos(currentAngle) * radius
@@ -64,44 +64,25 @@ function ProjectSphere({ index, total, setFocusedItem, model }) {
         <meshBasicMaterial visible={false} />
       </mesh>
       <Text position={[0, 2, 0]} fontSize={0.2} color="white">
-        Project {index + 1}
+        {project.name}
       </Text>
     </group>
   )
 }
 
-const availableGLTFs = [
-  {
-    'path': "/models/Projects/ancient_egypt_civilization_island_downloadable.glb",
-    'bloom': true
-  },
-  {
-    'path': "/models/Projects/cheese_moon.glb",
-    'bloom': true
-  },
-  {
-    'path': "/models/Projects/satellite.glb",
-    'bloom': true
-  },
-  {
-    'path': "/models/Projects/simple_satellite_low_poly_free.glb",
-    'bloom': true
-  }
-]
-
-export default function PortfolioSpheres({ count, setFocusedItem }) {
+export default function PortfolioSpheres({ projects, setFocusedItem }) {
   // Preload all GLTF models
-  availableGLTFs.forEach(path => useGLTF.preload(path))
+  projects.forEach(project => useGLTF.preload(project.model.model_path))
   
   return (
     <>
-      {Array.from({ length: count }).map((_, i) => (
+      {projects.map((project, i) => (
         <ProjectSphere 
           key={i} 
           index={i} 
-          total={count} 
+          total={projects.length} 
           setFocusedItem={setFocusedItem}
-          model={availableGLTFs[i % availableGLTFs.length]}
+          project={project}
         />
       ))}
     </>

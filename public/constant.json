@@ -1,0 +1,36 @@
+{
+  "projects": [
+    {
+      "name": "Realtime Stock Trading Platform",
+      "description": "Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.",
+      "model": {
+        "model_path": "/models/Projects/ancient_egypt_civilization_island_downloadable.glb",
+        "bloom": true
+      }
+    },
+    {
+      "name": "Project 2",
+      "description": "Details about Project 2.",
+      "model": {
+        "model_path": "/models/Projects/cheese_moon.glb",
+        "bloom": true
+      }
+    },
+    {
+      "name": "Project 3",
+      "description": "Details about Project 3.",
+      "model": {
+        "model_path": "/models/Projects/satellite.glb",
+        "bloom": true
+      }
+    },
+    {
+      "name": "Project 4",
+      "description": "Details about Project 4.",
+      "model": {
+        "model_path": "/models/Projects/simple_satellite_low_poly_free.glb",
+        "bloom": true
+      }
+    }
+  ]
+}
