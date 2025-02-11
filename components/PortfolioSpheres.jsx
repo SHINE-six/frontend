@@ -5,7 +5,6 @@ import { Text, useGLTF } from "@react-three/drei"
 function ProjectSphere({ index, total, setFocusedItem, project }) {
   const groupRef = useRef()
   const { scene } = useGLTF(project.model.model_path)
-  const color = "#000000"
   const angle = (index / total) * Math.PI * 2
   const radius = 14
   const tiltAngle = Math.PI * -0.15
@@ -15,16 +14,16 @@ function ProjectSphere({ index, total, setFocusedItem, project }) {
     scene.traverse((obj) => {
       if (obj.isMesh) {
         obj.material.roughness = 0.2
-        obj.material.metalness = 0.8
+        obj.material.metalness = 0.3
 
         if (project.model.bloom) {
           obj.layers.enable(1)
-          obj.material.emissive.set(color)
+          obj.material.emissive.set("#000000")
           obj.material.emissiveIntensity = 1
         }
       }
     })
-  }, [scene, color, project.model.bloom])
+  }, [scene, project.model.bloom])
   
   useFrame((state) => {
     const t = state.clock.getElapsedTime()

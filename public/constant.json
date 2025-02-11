@@ -1,14 +1,16 @@
 {
   "projects": [
     {
+      "slug": "realtime-stock-trading-platform",
       "name": "Realtime Stock Trading Platform",
-      "description": "Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.Details about Project 1.",
+      "description": "The project aims to develop a real-time system simulating a stock trading system, focusing on the stock side. The system design involves using Redpanda for communication, Redis for the database, and Tokio for asynchronous runtime. Orders are received, processed, and matched, updating stock prices in real-time. Critical components include the Order Management System, Market Data Generator, and efficient task management to ensure low-latency and high-performance operations.",
       "model": {
         "model_path": "/models/Projects/ancient_egypt_civilization_island_downloadable.glb",
         "bloom": true
       }
     },
     {
+      "slug": "realtime-stock-trading-platform",
       "name": "Project 2",
       "description": "Details about Project 2.",
       "model": {
@@ -17,6 +19,7 @@
       }
     },
     {
+      "slug": "realtime-stock-trading-platform",
       "name": "Project 3",
       "description": "Details about Project 3.",
       "model": {
@@ -25,6 +28,7 @@
       }
     },
     {
+      "slug": "realtime-stock-trading-platform",
       "name": "Project 4",
       "description": "Details about Project 4.",
       "model": {
