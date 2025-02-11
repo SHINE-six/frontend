@@ -8,6 +8,7 @@ import * as THREE from 'three';
 export default function Astronaut({ onPositionUpdate, enableBike }) {
   const { camera } = useThree();
   const { scene, animations } = useGLTF("/models/About/Astronaut/astronaut.glb");
+  // const { scene, animations } = useGLTF('/models/About/TRex/TRex.glb');
   const bike = useGLTF('/models/About/Bike/scene.gltf');
   const groupRef = useRef();
   const mixerRef = useRef();

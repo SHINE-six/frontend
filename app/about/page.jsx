@@ -1,11 +1,11 @@
 'use client';
 
 import { Canvas } from "@react-three/fiber"
-import { PerspectiveCamera, Stars } from "@react-three/drei"
+import { PerspectiveCamera, Stars, OrbitControls } from "@react-three/drei"
 import Astronaut from "@/components/Astronaut"
 import BioInfoBigAstronaut from "@/components/BioInfoBigAstronaut"
 import Toolbox from "@/components/Toolbox";
-// import Assistant from "@/components/Assistant";
+import Assistant from "@/components/Assistant";
 import UIAbout from "@/components/UI-about";
 import { useState } from 'react';
 
@@ -16,11 +16,12 @@ export default function AboutPage() {
   return (
     <div className="w-screen h-screen">
       <Canvas gl={{ alpha: false, antialias: true }} style={{ background: 'black' }}>
+        {/* <OrbitControls /> */}
         <PerspectiveCamera makeDefault position={[0, 0, 18]} fov={60} />
         <ambientLight intensity={1}/> 
         <directionalLight intensity={5} position={[9, 4, 4]} />
 
-        {/* <Assistant/> */}
+        <Assistant astronautPosition={astronautPosition}/>
         <Astronaut onPositionUpdate={setAstronautPosition} enableBike={enableBike}/>
         <BioInfoBigAstronaut/>
         <Toolbox astronautPosition={astronautPosition}/>
