@@ -5,15 +5,16 @@ import { AnimationMixer } from "three";
 import ThrustEffect from './ThrustEffect';
 import * as THREE from 'three';
 
-export default function Astronaut({ onPositionUpdate }) {
+export default function Astronaut({ onPositionUpdate, enableBike }) {
   const { camera } = useThree();
   const { scene, animations } = useGLTF("/models/About/Astronaut/astronaut.glb");
+  const bike = useGLTF('/models/About/Bike/scene.gltf');
   const groupRef = useRef();
   const mixerRef = useRef();
   const velocityRef = useRef({ x: 0, y: 0 });
-  const acceleration = 0.35;
-  const maxSpeed = 3;
-  const friction = 0.997;
+  const acceleration = 0.46;
+  const maxSpeed = 4.0;
+  const friction = 0.995;
   const minVelocity = 0.001;
   const [thrusters, setThrusters] = useState({
     up: false,
@@ -30,7 +31,7 @@ export default function Astronaut({ onPositionUpdate }) {
 
   // Add movement boundaries
   const MOVEMENT_BOUNDS = {
-    minX: -30,
+    minX: -40,
     maxX: 30,
     minY: -60,
     maxY: 8
@@ -223,31 +224,32 @@ export default function Astronaut({ onPositionUpdate }) {
       position={[0, 0, 0]} 
       rotation={[0, rotationRef.current, 0]}
     >
+      {enableBike && <primitive object={bike.scene} scale={[1.7, 1.7, 1.7]} position={[0, 0, 0]} rotation={[0, -45 * ( Math.PI / 2), 0]} />}
       <primitive object={scene} scale={[1, 1, 1]} />
       {thrusters.up && (
         <ThrustEffect 
-          position={[-0.7, 0, 0]}
+          position={[0, 0, 0]}
           scale={[0.5, 0.5, 0.5]}
           rotation={[0, 0, Math.PI / 2]}
         />
       )}
       {thrusters.down && (
         <ThrustEffect 
-          position={[0, 2.7, 0]} 
+          position={[0, 3.0, 0]} 
           scale={[0.5, 0.5, 0.5]}
           rotation={[0, 0, - Math.PI / 2]}
         />
       )}
       {thrusters.left && (
         <ThrustEffect 
-          position={[0.7, 1.3, 0]}
+          position={[0.8, 1.3, 0]}
           scale={[0.5, 0.5, 0.5]}
           rotation={[0, 0, Math.PI]}
         />
       )}
       {thrusters.right && (
         <ThrustEffect 
-          position={[-1, 1.3, 0]}
+          position={[-0.8, 1.3, 0]}
           scale={[0.5, 0.5, 0.5]}
           rotation={[0, 0, 0]}
         />

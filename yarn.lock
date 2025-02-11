@@ -605,6 +605,14 @@
   dependencies:
     "@radix-ui/react-slot" "1.1.2"
 
+"@radix-ui/react-progress@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-progress/-/react-progress-1.1.2.tgz#3584c346d47f2a6f86076ce5af56ab00c66ded2b"
+  integrity sha512-u1IgJFQ4zNAUTjGdDL5dcl/U8ntOR6jsnhxKb5RKp5Ozwl88xKR9EqRZOe/Mk8tnx0x5tNUe2F+MzsyjqMg0MA==
+  dependencies:
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.2"
+
 "@radix-ui/react-select@^2.1.6":
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-select/-/react-select-2.1.6.tgz#79c07cac4de0188e6f7afb2720a87a0405d88849"
@@ -812,7 +820,7 @@
     "@react-spring/rafz" "~9.7.5"
     "@react-spring/types" "~9.7.5"
 
-"@react-spring/three@~9.7.5":
+"@react-spring/three@^9.7.5", "@react-spring/three@~9.7.5":
   version "9.7.5"
   resolved "https://registry.yarnpkg.com/@react-spring/three/-/three-9.7.5.tgz#46bcd22354afa873a809f1c6d7e07b59600b4d08"
   integrity sha512-RxIsCoQfUqOS3POmhVHa1wdWS0wyHAUway73uRLp3GAL5U2iYVNdnzQsep6M2NZ994BlW8TcKuMtQHUqOsy6WA==
@@ -2228,6 +2236,11 @@ graphemer@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
+
+gsap@^3.12.7:
+  version "3.12.7"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.12.7.tgz#1b690def901ac9b21d4909f39c2b52418154463d"
+  integrity sha512-V4GsyVamhmKefvcAKaoy0h6si0xX7ogwBoBSs2CTJwt7luW0oZzC0LhdkyuKV8PJAXr7Yaj8pMjCKD4GJ+eEMg==
 
 has-bigints@^1.0.2:
   version "1.1.0"

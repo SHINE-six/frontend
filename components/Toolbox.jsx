@@ -2,6 +2,9 @@ import { useGLTF } from "@react-three/drei";
 import { AnimationMixer, LoopOnce } from "three";
 import { useRef, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
+import { Ball } from "./SkillSphere";
+import technologies from "../lib/skill";
+import { useSpring, animated } from "@react-spring/three";
 
 export default function Toolbox({ astronautPosition }) {
   const { scene, animations } = useGLTF("/models/About/Toolbox/tool_box.glb");
@@ -10,8 +13,11 @@ export default function Toolbox({ astronautPosition }) {
   const actionRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const INTERACTION_RANGE = 15;
+  const INTERACTION_RANGE = 20;
   const TOOLBOX_POSITION = [-25, -30, 0];
+  const [ballPositions, setBallPositions] = useState(
+    technologies.map(() => ({ x: 0, y: 0, z: 0 }))
+  );
 
   useEffect(() => {
     if (animations && animations.length) {
@@ -31,6 +37,27 @@ export default function Toolbox({ astronautPosition }) {
       action.play();
     }
   }, [animations, scene]);
+
+  useEffect(() => {
+    if (isOpen && !isAnimating) {
+      // Animate balls flying out
+      const newPositions = technologies.map((_, index) => {
+        const row = Math.floor(index / 6);
+        const col = index % 6;
+        return {
+          x: col * 4 - 7,
+          y: row * 2.5 + 7,
+          z: 0,
+        };
+      });
+      setBallPositions(newPositions);
+    } else if (!isOpen && !isAnimating) {
+      // Return balls to toolbox
+      setBallPositions(
+        technologies.map(() => ({ x: 0, y: 0, z: 0 }))
+      );
+    }
+  }, [isOpen, isAnimating]);
 
   useFrame((state, delta) => {
     if (!mixerRef.current || !actionRef.current) return;
@@ -79,9 +106,34 @@ export default function Toolbox({ astronautPosition }) {
     <group 
       ref={groupRef} 
       position={TOOLBOX_POSITION}
-      scale={[0.04, 0.04, 0.04]}
     >
-      <primitive object={scene} />
+      <primitive object={scene} scale={[0.04, 0.04, 0.04]}/>
+      
+      {technologies.map((technology, index) => {
+        const springs = useSpring({
+          to: {
+            position: [
+              ballPositions[index].x,
+              ballPositions[index].y,
+              ballPositions[index].z
+            ],
+            scale: isOpen ? 0.8 : 0.1,
+            opacity: isOpen ? 1 : 0
+          },
+          config: { mass: 1, tension: 280, friction: 60 }
+        });
+
+        return (
+          <animated.group key={technology.name} {...springs}>
+            <Ball 
+              imgUrl={technology.icon}
+              position={[0, 0, 0]}
+              scale={1.2}
+              astronautPosition={astronautPosition}
+            />
+          </animated.group>
+        );
+      })}
     </group>
   );
 }

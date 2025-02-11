@@ -9,13 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-progress": "^1.1.2",
     "@radix-ui/react-select": "^2.1.6",
+    "@react-spring/three": "^9.7.5",
     "@react-three/drei": "^9.121.4",
     "@react-three/fiber": "^9.0.0-alpha.8",
     "@react-three/postprocessing": "^3.0.0-rc.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fs": "^0.0.1-security",
+    "gsap": "^3.12.7",
     "js-yaml": "^4.1.0",
     "leva": "^0.10.0",
     "lucide-react": "^0.475.0",
